@@ -165,7 +165,7 @@ export const Hero = ({ cvUrl, linkedInUrl, githubUrl, email }) => {
               <motion.a
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                href={`mailto:${email}`}
+                href={`${email}`}
                 aria-label="Send Email"
                 className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-[#203A74] bg-[#FCFAF5] flex items-center justify-center text-[#203A74] hover:bg-[#D6E3F5]/30 hover:border-[#355CA8] transition-all shadow-[0_2px_6px_rgba(32,58,116,0.12)]"
               >
