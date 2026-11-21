@@ -1,83 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --bg: #f6f7f9;
-  --card: #ffffff;
-  --text: #2b3340;
-  --muted: #6b7585;
-  --accent: #4a6fa5;
-  --accent-soft: #e8eef7;
-  --line: #e4e7ec;
+  --bg-color: #F9F6EF;
+  --paper-color: #FCFAF5;
+  --line-color: #D6E3F5;
+  --ink-primary: #203A74;
+  --ink-secondary: #355CA8;
+  --btn-primary: #2F4D9E;
+  --btn-hover: #3F63C7;
+  --border-color: #B8C8E4;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --bg: #14181f;
-    --card: #1c222b;
-    --text: #e6e9ee;
-    --muted: #9aa4b2;
-    --accent: #8fb0dd;
-    --accent-soft: #243044;
-    --line: #2a323d;
-  }
-}
-
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.55;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--ink-primary);
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
-main { max-width: 720px; margin: 0 auto; padding: 24px 16px 44px; }
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 22px;
-  margin-bottom: 16px;
+/* Notebook ruled lines */
+.notebook-page {
+  background-color: var(--paper-color);
+  background-image: 
+    linear-gradient(90deg, rgba(220, 230, 245, 0.4) 1px, transparent 1px),
+    repeating-linear-gradient(
+      transparent,
+      transparent 35px,
+      var(--line-color) 35px,
+      var(--line-color) 36px
+    );
+  background-size: 100% 100%, 100% 36px;
+  background-position: 0 0, 0 18px;
 }
 
-.top { text-align: center; }
-
-.avatar {
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--accent-soft);
+/* Torn paper deckled edges */
+.torn-paper-edge {
+  filter: drop-shadow(0 10px 15px rgba(32, 58, 116, 0.08)) 
+          drop-shadow(0 4px 6px rgba(0, 0, 0, 0.04));
 }
 
-h1 { font-size: 1.3rem; font-weight: 650; margin: 12px 0 2px; }
-.role { margin: 0; font-size: 0.98rem; }
-.meta { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
-
-.actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
-
-.btn {
-  display: inline-block;
-  padding: 11px 22px;
-  border-radius: 10px;
-  border: 1px solid var(--accent);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
+/* Masking Tape effect */
+.masking-tape {
+  background: rgba(246, 235, 196, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(1px);
 }
-.btn.primary { background: var(--accent); color: var(--card); }
-.btn.ghost { color: var(--accent); }
-.btn:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
 
-h2 { font-size: 1rem; font-weight: 650; color: var(--muted); margin: 0 0 12px; }
+.masking-tape::before,
+.masking-tape::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: inherit;
+}
 
-.doc {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
+.masking-tape::before {
+  left: -3px;
+  clip-path: polygon(100% 0, 0 20%, 100% 40%, 0 60%, 100% 80%, 0 100%, 100% 100%);
+}
+
+.masking-tape::after {
+  right: -3px;
+  clip-path: polygon(0 0, 100% 20%, 0 40%, 100% 60%, 0 80%, 100% 100%, 0 100%);
+}
+
+/* Smooth handwritten font helpers */
+.font-hand {
+  font-family: 'Patrick Hand', 'Caveat', cursive, sans-serif;
+}
+
+.font-caveat {
+  font-family: 'Caveat', 'Patrick Hand', cursive, sans-serif;
+}
+
+/* Custom dashed outline with notebook styling */
+.dashed-notebook-border {
+  border: 2px dashed var(--ink-secondary);
+}
+
+/* Ink selection */
+::selection {
+  background-color: #2F4D9E;
+  color: #FCFAF5;
 }
